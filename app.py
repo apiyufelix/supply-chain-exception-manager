@@ -1275,4 +1275,18 @@ else:
     st.info(
         "No exceptions are available for the selected filters."
     )
+
+    st.divider()
+
+st.subheader("Help Improve This App")
+
+st.caption(
+    "Tested the Supply Chain Exception Manager? "
+    "Please share a few minutes of feedback to help improve the next version."
+)
+
+st.link_button(
+    "Give Feedback",
+    "https://docs.google.com/forms/d/e/1FAIpQLScbzVIY2Y46nTFbaCB9oe_wUps0bQMBmkzBT6sDFcEJ8nFFZg/viewform?usp=publish-editor"
+)
     
