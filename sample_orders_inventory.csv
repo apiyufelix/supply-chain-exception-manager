@@ -1,0 +1,7 @@
+Order ID,SKU,Customer,Order Date,Required Ship Date,Order Status,Ordered Quantity,Shipped Quantity,Inventory On Hand,Reorder Point,Safety Stock,Supplier,Expected Receipt Date,Actual Receipt Date,Unit Cost
+SO1001,SKU-001,Acme Retail,2026-09-01,2026-09-10,Open,100,20,15,40,25,Supplier A,2026-09-08,2026-09-14,45.5
+SO1002,SKU-002,Northstar,2026-09-03,2026-09-18,Open,50,0,120,60,40,Supplier B,2026-09-15,,80.0
+SO1003,SKU-003,BrightMart,2026-09-04,2026-09-12,Partially Shipped,200,150,75,100,90,Supplier C,2026-09-09,2026-09-11,12.25
+SO1004,SKU-004,Acme Retail,2026-09-05,2026-09-20,Shipped,30,30,200,80,60,Supplier A,2026-09-13,2026-09-13,150.0
+SO1005,SKU-005,Metro Stores,2026-09-06,2026-09-11,Open,75,0,10,35,20,Supplier D,2026-09-10,,22.0
+SO1006,SKU-006,Northstar,2026-09-07,2026-09-25,Open,120,0,90,70,50,Supplier E,2026-09-22,,9.99
