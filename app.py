@@ -234,7 +234,7 @@ if "last_updated" not in st.session_state:
 
 st.title("Supply Chain Exception Manager")
 st.caption("Upload order and inventory data, detect exceptions, rank severity, and get recommended actions.")
-st.title("Supply Chain Exception Manager")
+
 
 st.caption(
     "Detect supply chain exceptions, prioritize risk, "
