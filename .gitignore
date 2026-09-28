@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Virtual environment
 .venv/
 
@@ -9,4 +10,17 @@ __pycache__/
 .env
 
 # Local SQLite database
+=======
+# Virtual environment
+.venv/
+
+# Python cache
+__pycache__/
+.pyc
+
+# Environment secrets
+.env
+
+# Local SQLite database
+>>>>>>> ab1bb5f64feca0f582bc33ca6eb3730872f5443d
 exception_manager.db

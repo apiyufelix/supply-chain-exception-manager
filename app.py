@@ -1276,7 +1276,7 @@ else:
         "No exceptions are available for the selected filters."
     )
 
-    st.divider()
+st.divider()
 
 st.subheader("Help Improve This App")
 
