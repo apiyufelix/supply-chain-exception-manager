@@ -310,21 +310,65 @@ c5.metric("Order Value at Risk", f"${exceptions['Order Value'].sum():,.0f}")
 
 st.divider()
 
-severity_order = ["Critical","High","Medium","Low"]
-f1,f2,f3 = st.columns(3)
-sev = f1.multiselect("Severity", severity_order, default=severity_order)
-suppliers = sorted(exceptions["Supplier"].dropna().astype(str).unique().tolist())
-customers = sorted(exceptions["Customer"].dropna().astype(str).unique().tolist())
-sup = f2.multiselect("Supplier", suppliers, default=suppliers)
-cust = f3.multiselect("Customer", customers, default=customers)
+severity_order = ["Critical", "High", "Medium", "Low"]
+
+exception_options = [
+    "All",
+    "Late Order",
+    "Low Inventory",
+    "Stockout Risk",
+    "Unshipped Order",
+    "Partial Shipment",
+    "Supplier Delay",
+    "Aging Order",
+]
+
+f1, f2, f3, f4 = st.columns(4)
+
+sev = f1.multiselect(
+    "Severity",
+    severity_order,
+    default=severity_order
+)
+
+suppliers = sorted(
+    exceptions["Supplier"]
+    .dropna()
+    .astype(str)
+    .unique()
+    .tolist()
+)
+
+customers = sorted(
+    exceptions["Customer"]
+    .dropna()
+    .astype(str)
+    .unique()
+    .tolist()
+)
+
+sup = f2.multiselect(
+    "Supplier",
+    suppliers,
+    default=suppliers
+)
+
+cust = f3.multiselect(
+    "Customer",
+    customers,
+    default=customers
+)
+
+selected_exception = f4.selectbox(
+    "Exception Type",
+    exception_options
+)
 
 filtered = exceptions[
     exceptions["Severity"].isin(sev) &
     exceptions["Supplier"].astype(str).isin(sup) &
     exceptions["Customer"].astype(str).isin(cust)
 ].copy()
-
-filtered = filtered.copy()
 
 filtered["Resolution Status"] = filtered["Order ID"].astype(str).apply(
     lambda order_id: load_workflow_field(
@@ -350,9 +394,11 @@ filtered["Last Updated"] = filtered["Order ID"].astype(str).apply(
     )
 )
 
-
-
-status_options = ["Open", "In Progress", "Resolved"]
+status_options = [
+    "Open",
+    "In Progress",
+    "Resolved"
+]
 
 owner_options = [
     "Unassigned",
@@ -364,15 +410,15 @@ owner_options = [
     "Operations Manager"
 ]
 
-f4, f5 = st.columns(2)
+f5, f6 = st.columns(2)
 
-selected_status = f4.multiselect(
+selected_status = f5.multiselect(
     "Resolution Status",
     status_options,
     default=status_options
 )
 
-selected_owner = f5.multiselect(
+selected_owner = f6.multiselect(
     "Assigned Owner",
     owner_options,
     default=owner_options
@@ -382,6 +428,15 @@ filtered = filtered[
     filtered["Resolution Status"].isin(selected_status) &
     filtered["Assigned Owner"].isin(selected_owner)
 ]
+
+if selected_exception != "All":
+    filtered = filtered[
+        filtered["Exception"].str.contains(
+            selected_exception,
+            case=False,
+            na=False
+        )
+    ]
 
 left,right = st.columns(2)
 if not filtered.empty:
